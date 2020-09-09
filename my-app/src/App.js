@@ -5,7 +5,7 @@ import Login from "./components/Login.js";
 import SignUp from "./components/SignUp";
 import TodoList from "./components/TodoList";
 import Home from "./components/Home";
-import UpdateTodo from "./components/UpdateTodo";
+// import UpdateTodo from "./components/UpdateTodo";
 
 import "./App.css";
 
@@ -17,8 +17,8 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={SignUp} />
-          <PrivateRoute exact path="/todolist" component={TodoList} />
-          <Route path="/updatetodo" component={UpdateTodo} />
+          <PrivateRoute path="/todolist" component={TodoList} />
+          {/* <Route path="/updatetodo" component={UpdateTodo} /> */}
         </Switch>
       </div>
     </Router>
