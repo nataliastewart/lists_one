@@ -20,7 +20,7 @@ export default function SignUp(props) {
 
   const postNewUser = () => {
     axiosWithAuth()
-      .post(`/api/auth/register`, newUser)
+      .post(`api/auth/register`, newUser)
       .then((res) => {
         console.log("postNewUser -> res.data", res);
         localStorage.setItem("token", res.data.token);

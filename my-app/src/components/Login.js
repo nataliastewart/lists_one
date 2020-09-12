@@ -36,33 +36,32 @@ const StyledContainer = styled.div`
   }
 `;
 
-let initialFormValues = {
+let initialState = {
   username: "",
   password: "",
+  isFetching: false,
 };
 
 function Login() {
-  const [formValues, setFormValues] = useState(initialFormValues);
+  const [login, setLogin] = useState(initialState);
 
   const onInputChange = (e) => {
-    setFormValues({
-      [e.target.name]: e.target.value,
-    });
+    setLogin({ ...login, [e.target.name]: e.target.value });
   };
 
   const { push } = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    setLogin({ ...login, isFetching: true });
     axiosWithAuth()
-      .post("api/auth/login", formValues)
+      .post("/api/auth/login", login)
       .then((res) => {
         console.log("LOGIN RES:", res);
         localStorage.setItem("token", res.data.token);
         push("/todolist");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log("LOGIN Error:", err));
   };
 
   return (
@@ -80,14 +79,14 @@ function Login() {
           <h4>Login</h4>
           <div>
             <input
-              value={formValues.username}
+              value={login.username}
               onChange={onInputChange}
               placeholder="username"
               name="username"
-              type="username"
+              type="text"
             />
             <input
-              value={formValues.password}
+              value={login.password}
               onChange={onInputChange}
               placeholder="Password"
               name="password"
@@ -96,13 +95,14 @@ function Login() {
           </div>
         </div>
         <div className="form-group submit">
-          <button onSubmit={handleSubmit}>Submit</button>
+          <button>Submit</button>
           Still don't have an account?
           <Link className="signup-link" to="/signup">
             Sign Up
           </Link>
         </div>
       </StyledContainer>
+      {login.isFetching && "Please wait...logging you in"}
     </form>
   );
 }
