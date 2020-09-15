@@ -24,7 +24,7 @@ const reducer = (state = initialState, action) => {
     case FETCH_LISTS_SUCCESS:
       return {
         ...state,
-        todoList: action.payload.data,
+        todoList: action.payload.data, //we had to write action.payload.data to be able to reach the array and loop through using map function
         fetchingList: false,
         error: "",
       };

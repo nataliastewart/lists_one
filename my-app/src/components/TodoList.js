@@ -25,8 +25,8 @@ const TodoList = (props) => {
         console.log("props inside map:", props);
         return (
           <div key={list.id}>
-            <h3>Name: {list.name}</h3>
-            {/* <p>List Type:{list.type_id}</p> */}
+            <h3>List Name: {list.name}</h3>
+            <p>List Type:{list.type}</p>
           </div>
         );
       })}
