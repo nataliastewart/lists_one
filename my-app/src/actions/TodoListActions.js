@@ -12,7 +12,7 @@ export const DELETE_LIST_FAIL = "DELETE_LIST_FAIL";
 
 //GET LISTS
 export const getLists = () => (dispatch) => {
-  // dispatch({ type: FETCH_LISTS_START });
+  dispatch({ type: FETCH_LISTS_START });
   axiosWithAuth()
     .get("/api/lists")
     .then((res) => {
